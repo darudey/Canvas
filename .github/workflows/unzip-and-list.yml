@@ -1,0 +1,23 @@
+name: Unzip and List ZIP Contents
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'download (2).zip'
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Unzip file
+        run: |
+          unzip "download (2).zip" -d extracted_contents
+
+      - name: List extracted contents
+        run: |
+          echo "Extracted files and folders:"
+          ls -R extracted_contents
